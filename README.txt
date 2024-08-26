@@ -1,28 +1,63 @@
-REMIX DEFAULT WORKSPACE
+# DegenToken
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+## Overview
+DegenToken is an ERC20 token designed for Degen Gaming, allowing players to earn and redeem tokens for in-game items and rewards.
 
-This workspace contains 3 directories:
+## Description
+This contract implements the following functionality:
+* Minting: Only the owner can mint new tokens and distribute them to players as rewards.
+* Transferring: Players can transfer their tokens to others.
+* Redeeming: Players can redeem their tokens for items in the in-game store.
+* Checking Balance: Players can check their token balance at any time.
+* Burning: Anyone can burn tokens they own that are no longer needed.
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+## Getting Started
 
-SCRIPTS
+### Installation
+```
+* git clone https://github.com/Boluchel/Degen-Token-.git
+* npm install
+```
+### Deployment
+```
+npx hardhat compile
+```
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+## Contract Address
+* DegenToken Contract Address: 0xaEC882d4cfB71A74d1c2E7cE132E0708436E3EC6
 
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+## Functions
+### mintDegenTokens(address _player, uint256 _amount)
+* Access: Public
+* Description: Mints new tokens and distributes them to the specified player.
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+### burnDegenTokens(uint256 amount)
+* Access: Public
+* Description: Burns the specified amount of tokens owned by the caller.
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+### transferDegenToken(address to, uint256 amount)
+* Access: Public
+* Description: Transfers the specified amount of tokens to the specified address.
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+### getDegenBalance(address _playerAddress)
+* Access: Public View
+* Description: Returns the token balance of the specified player.
+
+### viewMarketplace()
+* Access: External Pure
+* Description: Returns a string describing the available items in the marketplace.
+
+### redeemMarketPlaceItem(uint8 _itemToredeem)
+* Access: External
+* Description: Redeems the specified item from the marketplace using the caller's tokens.
+
+### canUserPlay()
+* Access: External View
+* Description: Returns a boolean indicating whether the caller can play the game.
+
+## Authors
+Banwo Boluwatife
+
+## License
+
+This project is licensed under the MIT License
